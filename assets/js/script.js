@@ -17,11 +17,13 @@ btn.onclick = function () {
 	document.body.style.overflow = 'hidden';
 }
 span.onclick = function () {
-	modal.style.display = "none";	
+	modal.style.display = "none";
+	document.body.style.overflow = 'auto';	
 }
 
 window.onclick = function () {
 	if (event.target == modal) {
 		modal.style.display = "none";
+		document.body.style.overflow = 'auto';
 	}
 }
