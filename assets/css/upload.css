@@ -1,0 +1,55 @@
+/*! formstone v1.4.16-1 [upload.css] 2019-08-06 | GPL-3.0 License | formstone.it */
+.fs-upload {
+ position: relative;
+ overflow: hidden;
+}
+.fs-upload,
+.fs-upload *,
+.fs-upload :after,
+.fs-upload :before,
+.fs-upload:after,
+.fs-upload:before {
+ -webkit-box-sizing: border-box;
+ box-sizing: border-box;
+ -webkit-transition: none;
+ transition: none;
+ -webkit-user-select: none;
+ -moz-user-select: none;
+ -ms-user-select: none;
+ user-select: none;
+ width: 100%;
+ height: 50px;
+}
+
+.fs-upload {
+	height: 150px;
+
+	border: 2px dashed #ccc;
+	color: #ccc;
+}
+
+.fs-upload-input {
+ position: absolute;
+ top: 0;
+ right: 0;
+ bottom: 0;
+ left: 0;
+ z-index: -1px;
+ opacity: 0;
+ pointer-events: none;
+}
+.fs-upload-target {
+ height: 150px;
+ padding: 65px 0;
+ text-align: center;
+ cursor: pointer;
+}
+.fs-upload-disabled .fs-upload-target,
+.no-touch .fs-upload-disabled:hover .fs-upload-target {
+ cursor: default;
+ cursor: not-allowed;
+}
+
+.fs-upload.fs-upload-dropping:hover {
+	border-color: #00E010;
+}

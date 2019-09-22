@@ -6,11 +6,110 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>ИУ5. Файлы, Лекции, Полезные плюхи для студентов кафедры "Системы обработки информации и управления" МГТУ им. Баумана</title>
 	<link rel="stylesheet" href="assets/css/main__style.css">
+    <link rel="stylesheet" href="assets/css/upload.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Bangers|Literata:500|Noto+Sans+SC:700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="assets/img/title_logo.png" />
+
+    <script src="assets/js/jquery-1.11.2.min.js"></script>
+    <script src="assets/js/core.js"></script>
+    <script src="assets/js/upload.js"></script>
 </head>
 <body>
+
+<style>
+    .fs-upload-target {
+        height: 150px;
+    }
+
+    .fs-upload.fs-upload-dropping .fs-upload-target {
+        border-color: #00E010;
+    }
+    .progress {
+        border: 0;
+        width: 50%;
+        height: 20px;
+        border-radius: 1px;
+        background: #858585;
+    }
+</style>
+
+<!-- Это скрипт по загрузке файлов-->
+    <script> 
+        jQuery(document).ready(function($) {
+            $('.upload').upload({
+                action: 'upload_obr.php',
+                label: 'Перетащите файл, или "Выбрать в ручную"',
+                postKey: 'newFile',
+                maxQueue: 1,
+                maxSize: 52428800,
+                /*postData: { 10485760
+                    name: 'User',
+                    ip: '127.0.0.1'
+                }*/
+            })
+            .on("start.upload", Start)
+            .on("filestart.upload", fileStart)
+            .on("fileprogress.upload", fileProgress)
+            .on("filecomplete.upload", fileComplete)
+            .on("fileerror.upload", fileError)
+            .on("complete.upload", Complete)
+            ;
+        });
+
+        function Start (e, files) {
+            console.log('Start');
+            var html = '';
+            for(var i = 0; i < files.length; i++) {
+                if (files[i].size > 10485760) {
+                    alert('Size');
+                }
+                html += '<li data-index="' + files[i].index + '"><span class="filename">' + files[i].name + '</span><progress value="0" max="100"></progress><span class="progress"></span></li>';
+            }
+            $("#res").append(html);
+        }
+
+        function fileStart (e, file) {
+            console.log('File Start');
+            $("#res")
+            .find('li[data-index='+file.index+']')
+            .find('progress').text('0%');
+        } 
+
+        function fileProgress (e, file, percent) {
+            console.log('File Progress');
+            $("#res")
+            .find('li[data-index='+file.index+']')
+            .find('progress').attr('value', percent)
+            .next().text(percent + '%');
+        }
+
+        function fileComplete (e, file, response) {
+            console.log('File Complete');
+            if (response == '' || response.toLowerCase() == 'error') {
+                $("#res")
+                .find('li[data-index='+file.index+']')
+                .addClass('upload_error').find('.progress').text('Ошибка загрузки');
+            } else {
+                $("#res")
+                .find('li[data-index='+file.index+']')
+                .addClass('upload_ok').find('.progress').text('Загружено');
+            }
+        }
+
+        function fileError (e, file) {
+            console.log('Error');
+            $("#res")
+            .find('li[data-index='+file.index+']')
+            .addClass('upload_error').find('.progress').text('Файл не поддерживается!');
+        }
+
+        function Complete (e) {
+            console.log('Complete');
+        }
+
+    </script>
+
     	<header class="header" id="header">
             <div class="container">
                 <div class="header__inner">
@@ -32,11 +131,14 @@
 	<div class="page">
 		<div class="intro" id="intro">
             <div id="myModal" class="modal">
-                        <div class="modal__content">
-                            <span class="close">&times</span>
-                            <p>Модальное окно</p>
-                        </div>
-                    </div>
+                <div class="modal__content">
+                    <span class="close">&times</span>
+                    <p class="modal__head">Отправь нам файлы</p>
+                    <div class="upload"></div>
+                    <div class="subtext">размер файла: до 50Мб Поддерживаются: jpg, jpeg, png, docx, zip, rar, pdf, txt; Другие файлы должны быть в архиве! Другие файлы не будут загружены, не смотря на сообщение "Загружено"... ида, не баг, а ФИЧА</div>
+                    <div id="res"></div>
+                </div>
+            </div>
             <div class="container">
                 <div class="intro__inner">
                     <!--<a class="btn" href="#">Прислать файл</a>-->
