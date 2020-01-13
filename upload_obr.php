@@ -9,13 +9,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$file_type = $_FILES['newFile']['type'];
 		$file_ext = strtolower(end(explode('.',$_FILES['newFile']['name'])));
 		
-		$extensions = array("txt","jpeg","jpg","png","docx","docs","zip","rar", "pdf");
+		$extensions = array("txt","jpeg","JPEG","jpg","png","docx","doc","zip","rar", "pdf","html");
 
 
 		if (in_array($file_ext, $extensions))
 		{
 			if (move_uploaded_file($_FILES['newFile']['tmp_name'], 'uploads/'.$_FILES['newFile']['name'])) {
-				echo "OK!";
+				echo "File moved!";
 			} else {
 				echo "Error!";
 			}
