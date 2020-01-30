@@ -1,12 +1,4 @@
-//menu.onclock = function myFuntion() {
-//	var x = document.getElementById("myTopnav");
-//
-//	if(x.className === "topnav") {
-//		x.className += "responsive";
-//	} else {
-//		x.className = "topnav";
-//	}
-//}
+
 
 var modal = document.getElementById("myModal");
 var btn = document.getElementById("myBtn");
@@ -23,15 +15,6 @@ closeButton.onclick = function () {
 	document.body.style.overflow = 'auto';
 	location.replace('index.html');
 }
-/*
-
-span.onclick = function () {
-	modal.style.display = "none";
-	document.body.style.overflow = 'auto';
-	location.replace('index.html');
-
-}
-*/
 
 window.onclick = function () {
 	if (event.target == modal) {

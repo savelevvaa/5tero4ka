@@ -472,6 +472,23 @@ progress {
     color: #f38181;
 }
 
+.preloader{
+    background-color: #021732;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1001;
+}
+    
+.preloaderBlock{
+    position: relative;
+    top: 50vh;
+    left: 50%;
+    margin: -100px 0 0 -100px;
+}
+
 @media screen and (max-width: 760px) {
     .topnav {
         display:  none;

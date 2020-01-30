@@ -10,13 +10,13 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Bangers|Literata:500|Noto+Sans+SC:700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="assets/img/title_logo.png" />
-
-    <script src="assets/js/jquery-1.11.2.min.js"></script>
-    <script src="assets/js/core.js"></script>
-    <script src="assets/js/upload.js"></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!-- Библиотека JQuery по инету -->
+    <script src="assets/js/preloader.js"></script> <!-- Прелоадер -->
 </head>
 <body>
 
+<!-- Стили для модального окна загрузки-->
 <style>
     .fs-upload-target {
         height: 150px;
@@ -109,7 +109,7 @@
         }
 
     </script>
-
+        <!-- Заголовок -->
     	<header class="header" id="header">
             <div class="container">
                 <div class="header__inner">
@@ -127,7 +127,13 @@
                 </div>
             </div>
     	</header>
-
+        
+        <div class="preloader" id="preloader">
+                <img class="preloaderBlock" src="assets/img/preloader.svg" alt="">
+        </div>
+        
+        
+    <!-- Основная страница -->
 	<div class="page">
 		<div class="intro" id="intro">
             <div id="myModal" class="modal">
@@ -210,7 +216,7 @@
         </div>
     </section>
 
-    <footer class="footer" id="footer">
+    <footer class="footer" id="footer"> <!-- Фоотер с контактами -->
         <div class="container">
             <div class="footer__inner">
                 <div class="footer__item"><a class="link__contact" href="http://vk.com/5tero4ka/">vk.com/5tero4ka/</a></div>
@@ -221,10 +227,13 @@
     </footer>
 
 
-    <script src="assets/js/script.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <script src="assets/js/app.js"></script>
+    <script src="assets/js/jquery-1.11.2.min.js"></script> <!-- Библиотека JQuery локальная -->
+    <script src="assets/js/core.js"></script> <!-- Ядро Formstone для загрузки (DropZone) -->
+    <script src="assets/js/upload.js"></script> <!-- Formstone загрузка (DropZone) -->
+    <script src="assets/js/script.js"></script> <!-- Скрипт для модального окна -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script> <!-- ? -->
+    <script src="assets/js/app.js"></script> <!-- Плавный скролл, фиксированный заголовок -->
+
 
 </body>
 </html> 
