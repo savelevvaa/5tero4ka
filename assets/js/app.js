@@ -3,9 +3,10 @@ $(function() {
     var header = $("#header"),
         introH = $("#intro").innerHeight(),
         scrollOffset = $(window).scrollTop();
-
+    
 
     /* Fixed Header */
+    
     checkScroll(scrollOffset);
 
     $(window).on("scroll", function() {
@@ -22,7 +23,22 @@ $(function() {
         }
     }
 
+    
+    /*
+    $(document).scroll(function() {
 
+      var y = $(this).scrollTop(),
+
+      if (y > 100) {
+        header.addClass("fixed");
+        $('.header.fixed').slideDown(100);
+      } else {
+        $('.header.fixed').slideUp(100);
+      }
+
+    });
+    */
+    
 
     /* Smooth scroll */
     $("[data-scroll]").on("click", function(event) {
